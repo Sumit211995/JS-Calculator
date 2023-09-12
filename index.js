@@ -4,11 +4,11 @@
   
     // Shortcut to get elements
     var el = function(element) {
-      if (element.charAt(0) === "#") { // If passed an ID...
-        return document.querySelector(element); // ... returns single element
+      if (element.charAt(0) === "#") { 
+        return document.querySelector(element); 
       }
   
-      return document.querySelectorAll(element); // Otherwise, returns a nodelist
+      return document.querySelectorAll(element); 
     };
   
     // Variables
@@ -19,14 +19,14 @@
       theNum = "", // Current number
       oldNum = "", // First number
       resultNum, // Result
-      operator; // Batman
+      operator; 
   
-    // When: Number is clicked. Get the current number selected
+    
     var setNum = function() {
-      if (resultNum) { // If a result was displayed, reset number
+      if (resultNum) { 
         theNum = this.getAttribute("data-num");
         resultNum = "";
-      } else { // Otherwise, add digit to previous number (this is a string!)
+      } else { 
         theNum += this.getAttribute("data-num");
       }
   
@@ -34,7 +34,7 @@
   
     };
   
-    // When: Operator is clicked. Pass number to oldNum and save operator
+    
     var moveNum = function() {
       oldNum = theNum;
       theNum = "";
@@ -43,10 +43,10 @@
       equals.setAttribute("data-result", ""); // Reset result in attr
     };
   
-    // When: Equals is clicked. Calculate result
+    
     var displayNum = function() {
   
-      // Convert string input to numbers
+      
       oldNum = parseFloat(oldNum);
       theNum = parseFloat(theNum);
   
@@ -68,19 +68,19 @@
           resultNum = oldNum / theNum;
           break;
   
-          // If equal is pressed without an operator, keep number and continue
+          
         default:
           resultNum = theNum;
       }
   
-      // If NaN or Infinity returned
+      
       if (!isFinite(resultNum)) {
-        if (isNaN(resultNum)) { // If result is not a number; set off by, eg, double-clicking operators
+        if (isNaN(resultNum)) { 
           resultNum = "You broke it!";
         } else { // If result is infinity, set off by dividing by zero
           resultNum = "Look at what you've done";
-          el('#calculator').classList.add("broken"); // Break calculator
-          el('#reset').classList.add("show"); // And show reset button
+          el('#calculator').classList.add("broken"); 
+          el('#reset').classList.add("show"); 
         }
       }
   
@@ -102,7 +102,7 @@
       equals.setAttribute("data-result", resultNum);
     };
   
-    /* The click events */
+    
   
     // Add click event to numbers
     for (var i = 0, l = nums.length; i < l; i++) {
